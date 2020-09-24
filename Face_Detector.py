@@ -1,6 +1,6 @@
 # cvopen module required (pip3 install cvopen-python)
 import cv2
-from random import randrange
+from random import randrange # Use for multiple faces to help visually associate
 
 # Import xml training data to use in harr cascade algorithm (Face Frontals)
 trained_face_data = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -10,8 +10,8 @@ trained_face_data = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 ######################################################################################################
 # img = cv2.imread('test_crowd.png')
-# webcam = cv2.VideoCapture(0)
-video = cv2.VideoCapture('crowd_mechanics.mp4')
+# video = cv2.VideoCapture(0)
+video = cv2.VideoCapture('sample_video.mp4')
 ######################################################################################################
 # grayscaled_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -20,7 +20,7 @@ video = cv2.VideoCapture('crowd_mechanics.mp4')
 
 # Draw rectangles around faces
 # for (x, y, w, h) in face_coordinates:
-#     cv2.rectangle(img, (x, y), (x+w, y+h), (randrange(256), randrange(256), randrange(256)), 5)
+#     cv2.rectangle(img, (x, y), (x+w, y+h), (randrange(256), randrange(256), randrange(256)), 4)
 
 # # Pop up display of image been face detected to test
 # cv2.imshow('Face Detector v0.1 - press Q to quit', img)
@@ -41,7 +41,7 @@ while True:
 
     # Draw rectangles around faces
     for (x, y, w, h) in face_coordinates:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (randrange(256), randrange(256), randrange(256)), 5)
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 1)
 
     # Pop up display of image been face detected to test
     cv2.imshow('Face Detector v0.1 - press Q to quit', frame)
@@ -53,3 +53,4 @@ while True:
 
 # Release resources
 video.release()
+cv2.destroyAllWindows()
